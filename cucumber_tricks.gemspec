@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "cucumber_tricks"
   spec.version       = CucumberTricks::VERSION
   spec.authors       = ["Philou"]
-  spec.email         = ["philippe.bourgau@free.fr"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.email         = ["philippe.bourgau@gmail.com"]
+  spec.description   = %q{Cucumber step definition dsl extension to easily define more readable steps}
+  spec.summary       = %q{Allows to reference entities with pronouns in gherkin, and to have dual steps, taking a single parameter, or a more detailed table.}
+  spec.homepage      = "https://github.com/philou/cucumber_tricks"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -18,6 +18,6 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
 end

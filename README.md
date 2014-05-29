@@ -1,6 +1,6 @@
 # CucumberTricks
 
-TODO: Write a gem description
+Cucumber step definition dsl extension to easily define more readable steps.
 
 ## Installation
 
