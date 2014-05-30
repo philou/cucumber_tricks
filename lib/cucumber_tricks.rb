@@ -1,5 +1,3 @@
 require "cucumber_tricks/version"
-
-module CucumberTricks
-  # Your code goes here...
-end
+require "cucumber_tricks/dsl_extensions"
+require "cucumber_tricks/table_extensions"
