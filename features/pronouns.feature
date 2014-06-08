@@ -1,7 +1,7 @@
 Feature: Pronouns
 
   As a developper tester
-  In order to be factorize code and support english readable steps
+  In order to factorize code and support english readable steps
   I want a special textual transform that can be referenced with a pronoun
 
   Special NameOrPronounTransform creates special transform that can have a default
@@ -9,7 +9,7 @@ Feature: Pronouns
 
   Background: Step definitions
 
-    Given a file named "features/step_definitions/step.rb" with
+    Given a file named "features/step_definitions/steps.rb" with
 """
 require 'cucumber_tricks'
 
