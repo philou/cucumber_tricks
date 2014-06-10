@@ -69,8 +69,8 @@ Feature:
   Scenario:
     Given the fishes
       | Whity  |
+      | Reddy  |
     Then Whity should have a normal size
-    And Blacky should have a normal size
     And Reddy should have a normal size
 """
     When I run cucumber "features/foo.feature"
