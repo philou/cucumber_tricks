@@ -6,10 +6,9 @@
 #   /^(a|an|the|this) tool( "([^"]*)")?$/
 #
 # Allowing to match things like
-#
-#  * the tool "saw"
-#  * a tool
-#  * this tool
+# * the tool "saw"
+# * a tool
+# * this tool
 #
 # The first time this capture is matched in a scenario, the given value
 # is stored for any subsequent capture where no value is specified.
@@ -17,6 +16,8 @@
 # If ever the first capture does not provide an explicit value, then
 # the given default value is used (aka 'hammer' in the previous example)
 #
+# * kind : the kind of things to match (ex: 'tool')
+# * default_value : the default value to use if none is given at first usage
 def NameOrPronounTransform(kind, default_value)
 
   knows_this_kind_of_things = Module.new do
@@ -41,11 +42,8 @@ def NameOrPronounTransform(kind, default_value)
 end
 
 
-# GivenEither, WhenEither and ThenEither defines 2 steps in 1 call.
-#   * &bloc : is the implementation of the step, taking a table as argument
-#   * table_regex : is the regex with no arguments, matching the table
-#   * inline_regex : is a regex matching a single textual argument, that
-#     will be embedded in a one cell table before calling the block
+# Implementation of #GivenEither, #WhenEither and #ThenEither.
+# Defines 2 steps in 1 call.
 #
 # example:
 #
@@ -54,18 +52,26 @@ end
 #     create_animals(table)
 #   end
 #
+# * adverb : 'Given' | 'When' | 'Then', implementation purpose
+# * inline_regex : is a regex matching a single textual argument, that
+#   will be embedded in a one cell table before calling the block
+# * table_regex : is the regex with no arguments, matching the table
+# * &bloc : is the implementation of the step, taking a table as argument
 def register_either_step_definitions(adverb, inline_regex, table_regex, &block)
   send(adverb,inline_regex) do |arg|
     self.instance_exec(cucumber_table(arg), &block)
   end
   send(adverb,table_regex, &block)
 end
+# see #register_either_step_definitions
 def GivenEither(inline_regex, table_regex, &block)
   register_either_step_definitions('Given', inline_regex, table_regex, &block)
 end
+# see #register_either_step_definitions
 def WhenEither(inline_regex, table_regex, &block)
   register_either_step_definitions('When', inline_regex, table_regex, &block)
 end
+# see #register_either_step_definitions
 def ThenEither(inline_regex, table_regex, &block)
   register_either_step_definitions('Then', inline_regex, table_regex, &block)
 end
