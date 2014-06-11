@@ -39,14 +39,78 @@ steps.rb
 ```ruby
 A_TOOL = NameOrPronounTransform('tool', 'hammer')
 
-Given /^(#{A_TOOL})$/ do
+Given /^(#{A_TOOL})$/ do |tool|
   ...
 end
 ```
 
 ### Use the same step implementation to handle an inline arg as a 1-cell table
+
+steps.rb
+
+```ruby
+GivenEither /^the dog named "(.*)"$)$/,
+            /^the following dogs$/ do |dogs_table|
+  ...
+end
+```
+
+foo.feature
+
+```gherkin
+Given the dog "Rolphy"
+...
+Given the following dogs
+  | Rex  |
+  | King |
+  | Volt |
+```
+
 ### Add default values to the hashes of a table
+
+foo.feature
+
+```gherkin
+Given the following dogs
+  | names | color |
+  | Rex   | white |
+  | King  | Sand  |
+```
+
+steps.rb
+
+```ruby
+Given /^the following dogs$$/ do |dogs|
+  hashes = dogs.hashes_with_defaults('names', 'tail' => 'wagging', 'smell' => 'not nice')
+
+#  hashes.each do |hash|
+#    expect(hash['smell']).to eq('not nice')
+#  end
+
+  ...
+end
+```
+
 ### Define named lists from a table
+
+foo.feature
+
+```gherkin
+Given the following dishes
+  | Spaghetti Bolognaise | => | Spaghetti | Bolognaise sauce |       |         |
+  | Burger               | => | Bread     | Meat             | Salad | Ketchup |
+```
+
+steps.rb
+
+```ruby
+Given /^the following dishes$$/ do |dishes|
+  name_2_dishes = dishes.hash_2_lists
+
+#  expect(name_2_dishes['Burger']).to eq(['Bread','Meat','Salad','Ketchup'])
+
+  ...
+end
 
 ## Contributing
 
