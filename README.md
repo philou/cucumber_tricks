@@ -111,6 +111,7 @@ Given /^the following dishes$$/ do |dishes|
 
   ...
 end
+```
 
 ## Contributing
 
