@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/philou/cucumber_tricks.svg?branch=master)](https://travis-ci.org/philou/cucumber_tricks) [![Test Coverage](https://codeclimate.com/github/philou/cucumber_tricks/badges/coverage.svg)](https://codeclimate.com/github/philou/cucumber_tricks) [![Code Climate](https://codeclimate.com/github/philou/cucumber_tricks/badges/gpa.svg)](https://codeclimate.com/github/philou/cucumber_tricks)
+
 # CucumberTricks
 
 Cucumber step definition dsl extension to easily define more readable steps.
